@@ -1,3 +1,3 @@
-this is a file with some really long lines and you will notice that even though the line wraps, the line numbers on the left dont account for this wraps and thus display in correct. End line 1.
+this is a file with some really long lines and you will notice that even though the line wraps, the line numbers on the left dont account for this wraps and thus display incorrect. End of line 1.
 This is line 2 and it is a reallllllllllllllllllllyyyyyyyyyyyyyyyyyyyyyyyyyy         long lllllllllllllllllllllllllllloooooooooooooooooooooooonnnnnnnnnnnnngggggggggggg line. End of Line2.
 On Files, or source code that has long lines this looks pretty bad and it's hard to point people to specific lines of code when the lines are messed up by the new github UI with the menu bar on the right side...
