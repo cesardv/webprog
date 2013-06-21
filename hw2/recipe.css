@@ -4,10 +4,12 @@ body {
 	color: #404040; 
 	font-size: 11pt;
 	background : #e7e2cc url(bananawire.png);
+	
 }
 #wrap{
 	width:860px;
-	margin: 0px auto
+	margin: 0px auto;
+	border :  5px solid DarkOliveGreen;
 }
 
 /* All headings on the page should use a foreground color of 
@@ -74,6 +76,10 @@ All headings should be underlined. */
 .section{
 	margin : 0;
 	padding: 0 0 0 10px;
+}
+
+.section img {
+	border : 5px solid black;
 }
 
 .strong /*names of the four major steps of the recipe directions (such as "Preheat Oven") are formatted in a strong font.*/
