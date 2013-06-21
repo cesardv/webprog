@@ -1,8 +1,9 @@
-/* pie.css */
+/* recipe.css */
 body {
 /*  body should have white background. Text #404040*/
 	color: #404040; 
 	font-size: 11pt;
+	background : #e7e2cc url(bananawire.png);
 }
 #wrap{
 	width:860px;
@@ -86,11 +87,19 @@ All headings should be underlined. */
 	color: #FFFFC8;
 }
 
-#copy {
+#footer {
 	text-align:center;
 }
-
+#footer p {
+	margin : 3px ;
+}
 #prep{
 	list-style: none;
 	padding: 0;
+}
+
+.valid{
+	text-align: right;
+	margin: 0 90px;
+	padding : 0 60px;
 }
