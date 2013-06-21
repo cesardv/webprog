@@ -41,7 +41,7 @@ All headings should be underlined. */
 }
 
 #nav ul {
-	marging : 0;
+	margin : 0;
 	padding: 0;
 	list-style: none; /* list-style-type: none; list-style-position : initial; list-style-image: initial; */
 	/* text-align: center;*/
@@ -88,4 +88,9 @@ All headings should be underlined. */
 
 #copy {
 	text-align:center;
+}
+
+#prep{
+	list-style: none;
+	padding: 0;
 }
