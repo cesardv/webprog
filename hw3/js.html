@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+		function printTime() {
+			var timenow = new Date();
+			var areaelem = document.getElementById("time");
+
+			var hours = timenow.getHours();
+			var mins = timenow.getMinutes();
+
+			areaelem.innerHTML = "The time is " + mins + " minutes after " + hours;
+		}
+	</script>
+</head>
+<body>
+	<p>Hello, this is the time o'clock:</p>
+	<input type='button' value='ClickMe' onClick="printTime()" />
+	<p id='time'>The time is...</p>
+</body>
+</html>
