@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Cesar Velez | Hw3b</title>
+	<script type="text/javascript">
+		
+		function payroll(){
+			var inTxt = "";
+			var tothrs = 0;
+			var employeeCount = 1;
+			var wage = 15;
+			var totpayroll = 0;
+            var area = document.getElementById('area');
+			while(true){
+				if(employeeCount === 1){
+                    inTxt = parseInt(prompt("Please enter the hours worked for employee # "+ employeeCount +" this pay period: "));
+					area.write("<table id='payrolltbl' border=\"1\" align=\"center\"><tbody id='ptblbody'><tr><th>Employee#&nbsp; </th><th width=\"33%\"> Hours Worked&nbsp; </th><th width=\"33%\"> Gross Pay </th></tr>");
+				}
+                else{
+                    inTxt = parseInt(prompt("Please enter the hours worked for employee # "+ employeeCount +" this pay period: "));
+                }
+				if(employeeCount == 1 && inTxt <= 0){
+					alert("You must enter at least 1 employee's payroll info. Try again...");
+					break;
+				}
+				
+				if(inTxt <= 0){ /* finalize table*/
+					area.write("<tr><th>&nbsp;</th><th>Total hours: " + tothrs + "</th><th>$"  + totpayroll + "</th></tr>\n</table>");
+					break;
+				}
+				var gross = 0;
+				if(inTxt < 40){
+					gross = wage*inTxt;
+					totpayroll += gross;
+				}
+				else {
+					gross = 40*wage + (inTxt - 40)*wage*1.5;
+					totpayroll += gross;
+				}
+				tothrs += inTxt;
+				area.write("<tr><td>" + employeeCount + "</td><td>" + inTxt + "</td><td>" + gross + "</td></tr>\n");
+				
+				employeeCount++;
+			}
+			
+		
+		}
+	
+	</script>
+</head>
+<body>
+	<h1>Payroll JS App</h1>
+	<input type="button" value='Start Payroll' onClick="payroll()" />
+	<!-- <table id='payrolltbl' border="1" align="center">
+	<tbody id='ptblbody'><tr><th width="33%">Employee#&nbsp; </th><th width="33%"> Hours Worked&nbsp; </th><th width="33%"> Gross Pay </th></tr>
+		
+		<tr><th colspan="2"> <br>Total Payroll = </th><th><br>$1140</th></tr>
+	</tbody>
+	</table>
+	-->
+	<div id='area'></div>
+</body>
+</html>
