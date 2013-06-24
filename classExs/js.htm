@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head><title>Title</title>
+<script>
+	function checkEmail(){
+		var ex1area = document.getElementById("ex1");
+    var email = prompt("Enter email");
+    var is_email= email.indexOf("@");
+    alert(is_email);
+    var rest = email.substring(1);
+    /* alert(rest); */
+    var firstletter = email.substring(0,1);
+    alert(firstletter.toUpperCase() + rest);
+    ex1area.innerText = firstletter.toUpperCase() + rest;
+}
+
+function checkFave(){
+	var ex2area = document.getElementById("ex2");
+	var ans;
+	while(true)
+	{ 
+		ans =prompt("What's your favorite color?");
+		if(ans == null){		alert("please answer me!");}
+		else {
+			break;}
+	}
+	if(ans == "blue"){
+		ex2area.innerText="Cool... me too!";
+		}
+		else{
+			ex2area.innerText = ans + ", really? Ok...";
+			}
+		
+	}
+	
+function ran(){
+		
+		var ex3area = document.getElementById("ex3");
+		var arr = new Array(5);
+		for(var i=0; i<5; i++){
+			arr[i] = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
+			}
+			
+		ex3area.innerText = "We have an array ["+arr[0]+", "+arr[1]+","+arr[2]+", "+arr[3]+", "+arr[4]+"]";
+
+			ex3area.innerText += " ...out of which we can get numbers out these randomly:";
+			var j = 5; 
+			while(j>0){
+			var r = Math.floor(Math.random() * (4 - 0 + 1)) + 0;
+			j--;
+			ex3area.innerText += "" + arr[r] + ", ";
+			}
+		
+	}
+			
+	
+</script>
+</head>
+<body>
+<h1>Ex1</h1>
+<input type="button" value="clickForEmail" onClick="checkEmail()"/>
+<div id='ex1'></div>
+<h1>Ex2</h1>
+<input type="button" value="FaveColorPrompt" onClick="checkFave()"/>
+<div id='ex2'>
+
+</div>
+<br>
+<input type="button"  value="Random" onClick="ran()"/>
+<div id='ex3'>
+
+</div>
+</body>
+</html>
