@@ -25,7 +25,7 @@
 
 	function getAllData($symbol)
 	{
-		$data = request($symbol, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7');
+		$data = request($symbol, 'l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7s0n0o0h0g0');
 		$allData = array(	'price'=>$data[0],
     					 	'change'=>$data[1],
     					 	'volume'=>$data[2],
@@ -37,15 +37,22 @@
     						'dividend_per_share'=>$data[8],
     						'dividend_yield'=>$data[9],
     						'earnings_per_share'=>$data[10],
-    						'fiftytwo_week_high'=>$data[11],
-    						'fiftytwo_week_low'=>$data[12],
+    						'yrhigh'=>$data[11],
+    						'yrlow'=>$data[12],
     						'fiftyday_moving_avg'=>$data[13],
     						'twohundredday_moving_avg'=>$data[14],
     						'price_earnings_ratio'=>$data[15],
     						'price_earnings_growth_ratio'=>$data[16],
     						'price_sales_ratio'=>$data[17],
     						'price_book_ratio'=>$data[18],
-    						'short_ratio'=>$data[19],);
+    						'short_ratio'=>$data[19],
+							'symbol' => $data[20],
+							'name' => $data[21],
+							'oprice' => $data[22],
+							'dayhigh' => $data[23],
+							'daylow' => $data[24],
+							
+							);
 		return $allData;
 	}
 	

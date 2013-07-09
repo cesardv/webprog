@@ -15,6 +15,8 @@ stock data we query for per SYMBOL [s0]/Co. Name [n0]:
 */
 require_once("ystock.php");
 $user = "";
+$error = "";
+$stocks = array(); /* will store associative arrays for each stock */
 
 if(!validateEmail($_REQUEST['email'])){
 	echo "<h1>You're not authorized to log in!</h1>";
@@ -22,15 +24,16 @@ if(!validateEmail($_REQUEST['email'])){
 else
 {	
 	$user = $_REQUEST['email'];
-	$url = 'http://finance.yahoo.com/d/quotes.csv?s=AAPL&f=snd1lyr';
-	$returned  = file_get_contents( $url );
-	// separate into lines
-	$returnedLns = str_getcsv($returned, "\n"); 
+	$symbolsInput = $_REQUEST["symbols"];
+	$symArr = str_getcsv( $symbolsInput );
+	if(count($symArr) < 1){
+		$error = "Invalid input in symbols. Make sure your symbols are correct and separated by commas.<br/>For Ex: 'GOOG,MSFT,AAPL'";
+		return 1;
+	}
 	
-	foreach( $returnedLns as $line ) {
-		$contents = str_getcsv( $line );
-	   // Now, is an array of the comma-separated contents of a line
-	   // $test = print_r($contents); print to beginning of body
+	foreach($symArr as $ticker){
+		$codata = getAllData($ticker); // "s0n0l1o0h0g0v0k0j0"); <= this would give us the format of our tables... but getting all of it! hahaha
+		$stocks[] = $codata;
 	}
 }
 
@@ -48,15 +51,16 @@ function validateEmail($email) {
 <body>
     <h1>Welcome, <?php echo $user ?></h1>
 	<hr/>
-	<form id="symbolsinput" name="symbolsinput" action="stockdashboard.php">
+	<form id="symbolsinput" name="symbolsinput" action="stockdashboard.php" method="GET">
 		<label for="symbols">Please enter the ticker symbols to quote (Separate by commas/10 max):</label><br/>
 		<input type="text" name="symbols" maxLength="50"/>
 		<input type="submit" value="Quote"/>
+		<input hidden name="email" value="<?php echo $user ?>" />
 	</form>
     <p>Results:</p>
 	<?php 
 		if(empty($stocks)){
-			echo "<p>No result data to display</p>";
+			echo "<p>No result data to display:" . $error != "" ? echo $error : "" . "</p>";
 		}
 		else{
 			
@@ -64,7 +68,7 @@ function validateEmail($email) {
 			/* just finished thead */
 			$rows = "";
 			foreach($stocks as $co){
-				$rows += "<tr><td>" . $co["symbol"] . "</td><td>"  . $co["name"] . "</td><td>" . $co["price"] . "</td><td>" . $co["oprice"] . "</td><td>" . $co["dayhigh"] . "</td><td>" . $co["daylow"] . "</td><td>" . $co["dayvol"] . "</td><td>" . $co["yrhi"] . "</td><td>" . $co["yrlow"] . "</td></tr>"; 
+				$rows += "<tr><td>" . $co["symbol"] . "</td><td>"  . $co["name"] . "</td><td>" . $co["price"] . "</td><td>" . $co["oprice"] . "</td><td>" . $co["dayhigh"] . "</td><td>" . $co["daylow"] . "</td><td>" . $co["volume"] . "</td><td>" . $co["yrhigh"] . "</td><td>" . $co["yrlow"] . "</td></tr>"; 
 			}
 			/* finish/close table*/
 			$tablebegin += $rows . "</table>";
