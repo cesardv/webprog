@@ -69,10 +69,10 @@ function validateEmail($email) {
 			/* just finished thead */
 			$rows = "";
 			foreach($stocks as $co){
-				$rows += "<tr><td>" . $co["symbol"] . "</td><td>"  . $co["name"] . "</td><td>" . $co["price"] . "</td><td>" . $co["oprice"] . "</td><td>" . $co["dayhigh"] . "</td><td>" . $co["daylow"] . "</td><td>" . $co["volume"] . "</td><td>" . $co["yrhigh"] . "</td><td>" . $co["yrlow"] . "</td></tr>"; 
+				$rows = $rows . "<tr><td>" . $co["symbol"] . "</td><td>"  . $co["name"] . "</td><td>" . $co["price"] . "</td><td>" . $co["oprice"] . "</td><td>" . $co["dayhigh"] . "</td><td>" . $co["daylow"] . "</td><td>" . $co["volume"] . "</td><td>" . $co["yrhigh"] . "</td><td>" . $co["yrlow"] . "</td></tr>"; 
 			}
 			/* finish/close table*/
-			$tablebegin += $rows . "</table>";
+			$tablebegin = $tablebegin . $rows . "</table>";
 			echo $tablebegin;
 		}
 	
