@@ -1,1 +1,1 @@
-cp ./classExs/stockprices/* /c/xampp/htdocs/stockprices/
+cp ./hw4/stockapp/* /c/xampp/htdocs/stockprices/
