@@ -16,7 +16,7 @@ stock data we query for per SYMBOL [s0]/Co. Name [n0]:
 require_once("ystock.php");
 $user = "";
 $error = "";
-$stocks = array(); /* will store associative arrays for each stock */
+//$stocks = array(); /* will store associative arrays for each stock */
 
 if(!validateEmail($_REQUEST['email'])){
 	echo "<h1>You're not authorized to log in!</h1>";
@@ -30,11 +30,11 @@ else
 		$error = "Invalid input in symbols. Make sure your symbols are correct and separated by commas.<br/>For Ex: 'GOOG,MSFT,AAPL'";
 		return 1;
 	}
-	
-	foreach($symArr as $ticker){
-		$codata = getAllData($ticker); // "s0n0l1o0h0g0v0k0j0"); <= this would give us the format of our tables... but getting all of it! hahaha
-		$stocks[] = $codata;
+	else
+	{
+		$stocks = multiRequest($symArr, "s0n0l1o0h0g0v0k0j0");
 	}
+	
 }
 
 /* normally you'd hit a database to validate... */
@@ -60,7 +60,8 @@ function validateEmail($email) {
     <p>Results:</p>
 	<?php 
 		if(empty($stocks)){
-			echo "<p>No result data to display:" . $error != "" ? echo $error : "" . "</p>";
+			echo "<p>No result data to display.</p>";
+			echo $error != "" ? $error : "";
 		}
 		else{
 			

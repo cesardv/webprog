@@ -22,6 +22,47 @@
 		fclose($handle);
 		return $data;		
 	}
+	
+	function multiRequest($symbols, $stat){
+	
+		$allstocks = array();
+		$url = "http://finance.yahoo.com/d/quotes.csv?s="; 
+		// print $url;
+		// print_r($symbols);
+		foreach($symbols as $sym){
+			// print $ticker;
+			$url = $url . $sym . ","; // "&f=snd1lyr" APPARENTLY DOING $url += $sym . ... messes things up...
+		}
+		//print $url . "hi!!!";
+		$len1 = (strlen($url)-1);
+		// print $len1;
+		$url = substr($url, 0, $len1); //removes dangling comma
+		//print $url;
+		$returned  = file_get_contents( $url . "&f=" . $stat );
+		// separate into lines
+		$returnedLns = str_getcsv($returned, "\n"); 
+
+		foreach( $returnedLns as $line ) {
+			$contents = str_getcsv( $line );
+		   // Now, is an array of the comma-separated contents of a line
+		   // print_r($contents);
+		   //print $url . "&f=" . $stat;
+		   $allstocks[] = array( 
+								'symbol'=>$contents[0],
+								'name'=>$contents[1],
+								'price'=>$contents[2],
+								'oprice'=>$contents[3],
+								'dayhigh'=>$contents[4],
+								'daylow'=>$contents[5],
+								'volume'=>$contents[6],
+								'yrhigh'=>$contents[7],
+								'yrlow'=>$contents[8],
+								
+							);
+		}
+		// print_r($allstocks);
+		return $allstocks;
+	}
 
 	function getAllData($symbol)
 	{
@@ -50,9 +91,7 @@
 							'name' => $data[21],
 							'oprice' => $data[22],
 							'dayhigh' => $data[23],
-							'daylow' => $data[24],
-							
-							);
+							'daylow' => $data[24]);
 		return $allData;
 	}
 	
